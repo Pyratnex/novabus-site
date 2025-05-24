@@ -1,9 +1,9 @@
 // === COSTANTI ===
-const PASSWORD_ADMIN = 'novadep71';
-const PASSWORD_DIPENDENTI = 'dipendenti123';  // password dipendenti solo lettura
+const PASSWORD_ADMIN = 'ADMINNOVABUS!91526';
+const PASSWORD_DIPENDENTI = 'NovaBusDipend.9138';  // password dipendenti solo lettura
 
-const PASSWORD_SERVIZI = '21962';
-const PASSWORD_REPORT = '24012';
+const PASSWORD_SERVIZI = 'SERVIZIREMOVE10';
+const PASSWORD_REPORT = 'REPORTREMOVE10';
 
 // === ELEMENTI DOM ===
 const navLinks = document.querySelectorAll('nav a');
