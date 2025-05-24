@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NovaBus - Azienda Trasporto</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <header>
+        <h1>NovaBus</h1>
+        <nav>
+            <a href="#" data-section="home" class="active">Home</a>
+            <a href="#" data-section="chi-siamo">Chi Siamo</a>
+            <a href="#" data-section="servizi">Servizi</a>
+            <a href="#" data-section="dipendenti">Dipendenti</a>
+            <a href="#" data-section="contatti">Contatti</a>
+            <a href="#" data-section="report">Report</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="active">
+            <h2>Benvenuto in NovaBus</h2>
+            <p>La tua azienda di trasporto per tratte brevi su Angel Shores. Scopri i nostri servizi e il nostro team!
+            </p>
+        </section>
+
+        <section id="chi-siamo">
+            <h2>Chi Siamo</h2>
+            <p>NovaBus è un'azienda giovane e dinamica che si occupa di trasporto persone con mezzi moderni e
+                sostenibili.</p>
+        </section>
+
+        <section id="servizi">
+            <h2>Servizi</h2>
+            <ul>
+                <li>Trasporto urbano e suburbano</li>
+                <li>Linee brevi e frequenti</li>
+                <li>Bus elettrici e a basso impatto ambientale</li>
+            </ul>
+            <h2 class="autolinee">Autolinee</h2>
+            <div id="serviziPDFList">Nessun documento caricato.</div>
+        </section>
+
+        <section id="dipendenti">
+            <h2>Area Dipendenti</h2>
+            <div id="loginArea">
+                <p>Inserisci la password per accedere all'area riservata:</p>
+                <input type="password" id="passwordInput" placeholder="Password" />
+                <button id="loginBtn">Accedi</button>
+                <p id="loginMessage" class="error"></p>
+            </div>
+
+            <div id="dipendentiContent" style="display: none;">
+                <h3>Carica PDF</h3>
+                <input type="file" id="pdfUploader" accept="application/pdf" />
+                <select id="pdfDestination">
+                    <option value="servizi">Servizi</option>
+                    <option value="dipendenti">Dipendenti</option>
+                    <option value="report">Report</option>
+                </select>
+                <button id="uploadBtn">Carica</button>
+                <div id="dipendentiPDFList">Nessun documento caricato.</div>
+            </div>
+        </section>
+
+        <section id="contatti">
+            <h2>Contatti</h2>
+            <p>Email: <a href="mailto:info@novabus.it">info@novabus.it</a></p>
+            <p>Telefono: <a href="tel:+393519612161">+39 351 961 2161</a></p>
+            <p>Indirizzo: ...</p>
+        </section>
+
+        <section id="report">
+            <h2>Report</h2>
+            <div id="reportPDFList">Nessun documento caricato.</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 NovaBus. Tutti i diritti riservati.</p>
+    </footer>
+
+    <!-- Modale notifiche -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="modalClose">&times;</span>
+            <p id="modalText">Testo della notifica</p>
+        </div>
+    </div>
+
+    <!-- Modale password eliminazione -->
+    <div id="deletePasswordModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" id="deleteModalClose">&times;</span>
+            <p>Inserisci la password per eliminare il file:</p>
+            <input type="password" id="deletePasswordInput" placeholder="Password" />
+            <button id="confirmDeleteBtn">Conferma</button>
+            <p id="deletePasswordMessage" class="error"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
