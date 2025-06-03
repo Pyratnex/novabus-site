@@ -172,8 +172,11 @@ function loadPDFs() {
         const div = document.createElement('div');
         div.classList.add('pdf-item');
 
+        const blob = dataURLtoBlob(pdf.data);
+        const objectURL = URL.createObjectURL(blob);
+
         div.innerHTML = `
-            <a href="${pdf.data}" target="_blank" rel="noopener noreferrer">${pdf.name}</a>
+            <a href="${objectURL}" target="_blank" rel="noopener noreferrer">${pdf.name}</a>
             ${userRole === 'admin' ? `<button class="deleteBtn" data-index="${index}">Elimina</button>` : ''}
         `;
         list.appendChild(div);
@@ -184,20 +187,17 @@ function loadPDFs() {
         document.querySelectorAll('.deleteBtn').forEach(btn => {
             btn.addEventListener('click', e => {
                 pdfToDeleteIndex = parseInt(e.target.dataset.index);
-                
-                // Recupera la destinazione del PDF
+
                 const pdfs = JSON.parse(localStorage.getItem('novabusPDFs') || '[]');
                 if (!pdfs[pdfToDeleteIndex]) return;
                 pdfToDeleteDestination = pdfs[pdfToDeleteIndex].destination;
 
                 if (pdfToDeleteDestination === 'dipendenti') {
-                    // Eliminazione diretta senza password aggiuntiva
                     if (confirm('Sei sicuro di voler eliminare questo PDF?')) {
                         deletePDF(pdfToDeleteIndex);
                         showModal('File eliminato con successo!');
                     }
                 } else {
-                    // Per servizi e report chiedi password con modale
                     deletePasswordInput.value = '';
                     deletePasswordMessage.textContent = '';
                     deletePasswordModal.style.display = 'flex';
@@ -207,6 +207,7 @@ function loadPDFs() {
         });
     }
 }
+
 
 // --- Gestione modale eliminazione ---
 
@@ -271,6 +272,18 @@ window.onclick = e => {
         modal.style.display = 'none';
     }
 };
+
+function dataURLtoBlob(dataURL) {
+    const parts = dataURL.split(',');
+    const mimeMatch = parts[0].match(/:(.*?);/);
+    const mime = mimeMatch ? mimeMatch[1] : 'application/octet-stream';
+    const binary = atob(parts[1]);
+    const array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        array[i] = binary.charCodeAt(i);
+    }
+    return new Blob([array], { type: mime });
+}
 
 // --- All'avvio carica la home ---
 loadSection('home');
